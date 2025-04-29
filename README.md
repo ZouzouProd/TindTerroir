@@ -28,7 +28,6 @@ Promouvoir les circuits courts et les comportements écoresponsables à travers 
 1. **Cloner le projet** :  
    ```bash
    git clone https://github.com/votre-repo/tindterroir.git
-   cd tindterroir
    ```
 
 2. **Construire et lancer l'application** :  
