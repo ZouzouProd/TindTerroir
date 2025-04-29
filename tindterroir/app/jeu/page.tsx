@@ -46,7 +46,7 @@ export default function Jeu() {
         isCorrect = item.saisons.includes('Printemps') &&
         (item.region.includes(region) || item.region.includes('Partout en France'));
     }else if(direction === 'left') {
-        isCorrect = !item.saisons.includes('Printemps') && !item.region.includes(region);
+        isCorrect = !item.saisons.includes('Printemps') || !item.region.includes(region);
     }
                       
     
