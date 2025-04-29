@@ -41,9 +41,15 @@ export default function Jeu() {
   const handleSwipe = (direction: string, item: FruitLegume) => {
     setGameStarted(true);
     setFruitPlayed(item);
-    const isCorrect = direction === 'right' &&
-                      item.saisons.includes('Automne') && // à adapter dynamiquement
-                      item.region.includes(region)
+    let isCorrect = false;
+    if(direction === 'right') {
+        isCorrect = item.saisons.includes('Printemps') &&
+        (item.region.includes(region) || item.region.includes('Partout en France'));
+    }else if(direction === 'left') {
+        isCorrect = !item.saisons.includes('Printemps') && !item.region.includes(region);
+    }
+                      
+    
     setAnsweredCorrectly(isCorrect)
   
     if (currentIndex > 0) {
@@ -67,7 +73,7 @@ export default function Jeu() {
       {answeredCorrectly !== null && gameStarted && (
           <div className="mt-4">
             {answeredCorrectly ? (
-              <p className="text-green-600">Bravo ! Ce produit est local et en saison !</p>
+              <p className="text-green-600">Bravo ! Réponse correct !</p>
             ) : (
               <p className="text-red-600">Dommage, ce produit n'est pas local ou en saison.</p>
             )}
@@ -75,11 +81,11 @@ export default function Jeu() {
         )}
         {fruitPlayed !==null && gameStarted && (
             <div className="mt-4">
-                <p className="text-black-500">Le {fruitPlayed.nom} est un {fruitPlayed.type} originaire de {fruitPlayed.origine}. {fruitPlayed.region.length > 0 && (
-                    <p className="text-black-500">Plus précisement il vient de {fruitPlayed.region.join(', ')}.</p>
+                <p className="text-black-500 text-center">Le {fruitPlayed.nom} est un {fruitPlayed.type} originaire de {fruitPlayed.origine}. {fruitPlayed.region.length > 0 && (
+                    <p className="text-black-500 text-center">Plus précisement il vient de {fruitPlayed.region.join(', ')}.</p>
                 )}</p>
-                <p className="text-black-500">{fruitPlayed.saisons.length > 1 ? 'Les période' : 'La période'} idéal pour manger ce {fruitPlayed.type} {fruitPlayed.saisons.length > 1 ? 'sont' : 'est'} {fruitPlayed.saisons.join(', ')}</p>
-                <p className="text-black-500">En savoir plus : {fruitPlayed.description}</p>
+                <p className="text-black-500 text-center">{fruitPlayed.saisons.length > 1 ? 'Les période' : 'La période'} idéal pour manger ce {fruitPlayed.type} {fruitPlayed.saisons.length > 1 ? 'sont' : 'est'} {fruitPlayed.saisons.join(', ')}</p>
+                <p className="text-black-500 text-center">En savoir plus : {fruitPlayed.description}</p>
             </div>
         )}
       <div className="">
