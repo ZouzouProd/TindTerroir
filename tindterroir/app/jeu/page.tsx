@@ -75,7 +75,7 @@ export default function Jeu() {
             {answeredCorrectly ? (
               <p className="text-green-600">Bravo ! Réponse correct !</p>
             ) : (
-              <p className="text-red-600">Dommage, ce produit n'est pas local ou en saison.</p>
+              <p className="text-red-600">Dommage ! Mauvaise réponse.</p>
             )}
           </div>
         )}
