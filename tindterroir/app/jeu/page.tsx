@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import TinderCard from "react-tinder-card";
 import { useRouter } from "next/navigation";
 import { FruitLegume, fruitsLegumesData } from "../data/fruitsLegumes";
@@ -93,12 +94,21 @@ export default function Jeu() {
                     key={fruitsLegumes[currentIndex].nom}
                     swipeRequirementType="position"
                     swipeThreshold={50}
-                >
-                    <div className="w-80 h-80 bg-gray-200 rounded-xl p-6">
-                    <h3 className="text-xl font-semibold">{fruitsLegumes[currentIndex].nom}</h3>
-                    <p>{fruitsLegumes[currentIndex].description}</p>
+                    >
+                    <div className="w-80 h-[28rem] bg-white rounded-xl shadow-md overflow-hidden flex flex-col items-center justify-start">
+                        <Image
+                        src={`/data/images/${fruitsLegumes[currentIndex].nom.toLowerCase().replace(/\s/g, "_")}.jpg`}
+                        alt={fruitsLegumes[currentIndex].nom}
+                        width={320}
+                        height={200}
+                        className="object-cover w-full h-48"
+                        />
+                        <div className="p-4 text-center">
+                        <h3 className="text-xl font-semibold mb-2">{fruitsLegumes[currentIndex].nom}</h3>
+                        <p className="text-sm text-gray-600">{fruitsLegumes[currentIndex].description}</p>
+                        </div>
                     </div>
-                </TinderCard>
+                    </TinderCard>
                 </div>
             </div>
             ) : (
